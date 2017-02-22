@@ -1,5 +1,10 @@
 package edu.cecyt9.ipn.practica1_calculadora;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.preference.DialogPreference;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,14 +14,31 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import static android.widget.Toast.LENGTH_SHORT;
+import java.math.*;
+import android.*;
+
 
 
 public class MainActivity extends ActionBarActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+            AlertDialog alert;
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Raiz Cuadrada, Potencia, Sen, Cos y Tan.");
+            builder.setTitle("Ultima Version:");
+            builder.setCancelable(false);
+            builder.setNeutralButton("Entendido", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.cancel();
+                }
+            });
+            alert = builder.create();
+            alert.show();
     }
 
 
@@ -29,6 +51,11 @@ public class MainActivity extends ActionBarActivity {
 
     Double numero1,numero2,resultado;
     String operador;
+
+
+
+
+
 
     public void onClickButtonUno(View miView)
     {
@@ -97,6 +124,19 @@ public class MainActivity extends ActionBarActivity {
     public void onClickSuma(View miView)
     {
         operador="+";
+        if(miView==null){
+            AlertDialog alert;
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Primero escribe un numero");
+            builder.setTitle("Error");
+            builder.setCancelable(false);
+            builder.setNeutralButton("Entendido", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {dialog.cancel();
+                }
+            });
+            alert = builder.create();
+            alert.show();
+        }
         onClickOperacionCapturaNumero1(miView);
     }
     public void onClickResta(View miView)
@@ -114,27 +154,76 @@ public class MainActivity extends ActionBarActivity {
         operador="/";
         onClickOperacionCapturaNumero1(miView);
     }
+    public void onClickPotencia(View miView)
+    {
+        operador="^";
+        onClickOperacionCapturaNumero1(miView);
+    }
+    public void onClickRaiz(View miView)
+    {
+        operador="Raiz";
+        onClickOperacionCapturaNumero1(miView);
+    }
+    public void onClickSeno(View miView)
+    {
+        operador="Sen";
+        onClickOperacionCapturaNumero1(miView);
+    }
+    public void onClickCoseno(View miView)
+    {
+        operador="Cos";
+        onClickOperacionCapturaNumero1(miView);
+    }
+    public void onClickTan(View miView)
+    {
+        operador="Tan";
+        onClickOperacionCapturaNumero1(miView);
+    }
+
+
 
     public void onClickIgual(View miView)
     {
         TextView tv = (TextView) findViewById(R.id.textViewNumero) ;
-        numero2 = Double.parseDouble(tv.getText().toString());
-
-        try {
-
-            if (operador.equals("+")) {
-                resultado = numero1 + numero2;
-            } else if (operador.equals("-")) {
-                resultado = numero1 - numero2;
-            } else if (operador.equals("*")) {
-                resultado = numero1 * numero2;
-            } else if (operador.equals("/")) {
-                resultado = numero1 / numero2;
+        if (operador.equals("Raiz")||operador.equals("Sen")||operador.equals("Cos")||operador.equals("Tan")){
+            if(operador.equals("Raiz")){
+                resultado = Math.sqrt(numero1);
+            }else if (operador.equals("Sen")||operador.equals("Cos")||operador.equals("Tan")){
+                double ang = numero1 *Math.PI / 180.0;
+                if (operador.equals("Sen")){
+                    resultado = Math.sin(ang);
+                }else if(operador.equals("Cos")){
+                    resultado=Math.cos(ang);
+                }else if(operador.equals("Tan")){
+                    resultado=Math.tan(ang);
+                }
             }
-            tv.setText(resultado.toString());
-        }catch(NumberFormatException nfe){
-            Toast.makeText(this,"Numero Incorrecto", LENGTH_SHORT).show();
+
+
+        }else{
+
+            numero2 = Double.parseDouble(tv.getText().toString());
+
+            try {
+
+                if (operador.equals("+")) {
+                    resultado = numero1 + numero2;
+                } else if (operador.equals("-")) {
+                    resultado = numero1 - numero2;
+                } else if (operador.equals("*")) {
+                    resultado = numero1 * numero2;
+                } else if (operador.equals("/")) {
+                    resultado = numero1 / numero2;
+                }else if (operador.equals("^")){
+                    resultado = Math.pow(numero1,numero2);
+                }
+
+            }catch(NumberFormatException nfe){
+                Toast.makeText(this,"Numero Incorrecto", LENGTH_SHORT).show();
+            }
+
         }
+        tv.setText(resultado.toString());
     }
 
     public void onClickLimpia(View miView)

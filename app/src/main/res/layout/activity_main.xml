@@ -152,37 +152,27 @@
         android:onClick="onClickButtonCero"
         />
 
+
+    <Button
+        android:text="√"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClickRaiz"
+        android:id="@+id/Raiz"
+        android:layout_alignBaseline="@+id/buttonPunto"
+        android:layout_alignBottom="@+id/buttonPunto"
+        android:layout_toRightOf="@+id/buttonPunto"
+        android:layout_toEndOf="@+id/buttonPunto" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="."
         android:id="@+id/buttonPunto"
+        android:onClick="onClickButtonPunto"
         android:layout_below="@+id/buttonOcho"
         android:layout_toRightOf="@+id/buttonCero"
-        android:layout_toEndOf="@+id/buttonCero"
-        android:onClick="onClickButtonPunto"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+"
-        android:id="@+id/buttonMas"
-        android:layout_below="@+id/buttonResta"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="onClickSuma"/>
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Borrar Todo"
-        android:id="@+id/buttonBorrarTodo"
-        android:layout_below="@+id/buttonCero"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="onClickLimpia" />
+        android:layout_toEndOf="@+id/buttonCero" />
 
     <Button
         android:layout_width="wrap_content"
@@ -190,8 +180,73 @@
         android:text="="
         android:id="@+id/buttonIgual"
 
+        android:onClick="onClickIgual"
         android:layout_below="@+id/buttonMas"
-        android:layout_toRightOf="@+id/buttonNueve"
-        android:layout_toEndOf="@+id/buttonNueve"
-        android:onClick="onClickIgual"/>
+        android:layout_toRightOf="@+id/Raiz"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Limpiar"
+        android:id="@+id/buttonBorrarTodo"
+        android:onClick="onClickLimpia"
+        android:layout_below="@+id/buttonCero"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/Raiz"
+        android:layout_toStartOf="@+id/Raiz" />
+
+    <Button
+        android:text="^"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Potencia"
+        android:onClick="onClickPotencia"
+        android:layout_below="@+id/Raiz"
+        android:layout_toLeftOf="@+id/buttonIgual"
+        android:layout_toStartOf="@+id/buttonIgual" />
+
+    <Button
+        android:text="Tan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Tan"
+        android:onClick="onClickTan"
+        android:layout_below="@+id/buttonBorrarTodo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Sen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Seno"
+        android:onClick="onClickSeno"
+        android:layout_below="@+id/buttonBorrarTodo"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Cos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Cos"
+        android:onClick="onClickCoseno"
+        android:layout_below="@+id/buttonIgual"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:id="@+id/buttonMas"
+        android:onClick="onClickSuma"
+        android:elevation="0dp"
+        android:layout_alignBaseline="@+id/Raiz"
+        android:layout_alignBottom="@+id/Raiz"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>
